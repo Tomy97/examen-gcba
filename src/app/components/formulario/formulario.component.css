@@ -1,0 +1,11 @@
+
+.btn-consultar{
+    margin-top: 20px;
+}
+
+@media(min-width: 768px){
+    .btn-consultar{
+        margin-top: 0px;
+        margin-left: 20px;
+    }
+}

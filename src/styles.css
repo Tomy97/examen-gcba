@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+.panel {
+  box-shadow: none;
+}
+
+.navbar.navbar-default{
+border-top: 8px #fdd306 solid;
+box-shadow: 1px 1px 5px #e0e0e0;
+border-bottom: 0;
+padding-top: 20px;
+padding-bottom: 20px;
+}
+.bac-header {
+  width: 100px;
+}
+
+.title-brand {
+  float: left;
+  padding-left: 10px;
+  border-left: solid 2px lightgray;
+}

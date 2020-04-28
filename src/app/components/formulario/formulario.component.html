@@ -1,0 +1,108 @@
+<div class="container d-print-none">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Datos</h3>
+    </div>
+    <div class="panel-body">
+      <form novalidate [formGroup]="dniForm">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="dni">DNI</label>
+              <div class="form-inline">
+                <input class="form-control" placeholder="Ingrese DNI" type="number" id="dni" formControlName="dni" />
+                <button (click)="onSubmitDni()" type="submit" class="btn btn-primary btn-consultar">
+                  Consultar
+                </button>
+              </div>
+              <p class="text-danger" *ngIf="seEnvioDni && fcDni.dni?.errors?.required">El campo DNI es
+                requerido</p>
+              <p class="text-danger" *ngIf="seEnvioDni && fcDni.dni?.errors?.min">El campo DNI tiene que ser mayor a
+                1000</p>
+              <p class="text-danger" *ngIf="seEnvioDni && fcDni.dni?.errors?.max">El campo DNI tiene que ser menor a
+                99999999</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Nombre y apellido</label>
+              <p>{{nombreApellidoIngreso}}</p>
+            </div>
+          </div>
+        </div>
+      </form>
+      <hr />
+      <form novalidate [formGroup]="ingresoForm">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="N°-De-Tarj">Nro. de tarjeta de ingreso</label>
+                  <input formControlName="nroTarjeta" class="form-control" type="number" placeholder="Ingrese número"
+                    id="ingresar" />
+                  <p class="text-danger" *ngIf="seEnvioIngresar && fcIngreso.nroTarjeta?.errors?.required">El campo Nro.
+                    de tarjeta de ingreso es requerido</p>
+                  <p class="text-danger" *ngIf="seEnvioIngresar && fcIngreso.nroTarjeta?.errors?.min">El campo Nro. de
+                    tarjeta de ingreso tiene que ser mayor a
+                    1</p>
+                  <p class="text-danger" *ngIf="seEnvioIngresar && fcIngreso.nroTarjeta?.errors?.max">El campo Nro. de
+                    tarjeta de ingreso tiene que ser menor a
+                    99999999</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>Fecha de ingreso</label>
+                <p>{{hoy | date: 'dd/MM/yyyy'}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label>Hora de ingreso</label>
+            <p>{{hoy | date: 'HH:mm a'}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="visita">Visita a</label>
+              <select formControlName="visitaA" id="visita" class="form-control">
+                <option value="" disabled>
+                  Seleccion a la persona visitada
+                </option>
+                <option *ngFor="let empleado of empleadosConSector" [value]="empleado.nombre + ' ' + empleado.apellido">
+                  {{empleado.nombre}} {{empleado.apellido}}
+                </option>
+              </select>
+              <p class="text-danger" *ngIf="seEnvioIngresar && fcIngreso.visitaA?.errors?.required">El campo Visita a es
+                requerido</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="sector">Sector</label>
+              <select formControlName="sector" id="sector" class="form-control">
+                <option value="" disabled>
+                  Seleccionar sector de la persona visitada
+                </option>
+                <option *ngFor="let sector of sectores" [value]="sector">
+                  {{sector}}
+                </option>
+              </select>
+              <p class="text-danger" *ngIf="seEnvioIngresar && fcIngreso.sector?.errors?.required">El campo Sector es
+                requerido</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-right">
+            <button (click)="onSubmitIngreso()" id="ingresar" type="submit" class="btn btn-primary">
+              Ingresar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <app-tabla></app-tabla>
+</div>
